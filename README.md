@@ -16,7 +16,7 @@ A minimal buildless app looks like this:
   <head>
     <title>Preact+HTM+Modules test</title>
     <script type="module">
-      import { render, useState, html } from 'https://unpkg.com/@fordi-org/buildless@1.0.0/dist/buildless.modern.js';
+      import { render, useState, html } from 'https://unpkg.com/@fordi-org/buildless@1.0.2/dist/buildless.modern.js';
 
       const ClickCounter = () => {
         const [count, setCount] = useState(0);

@@ -1,6 +1,6 @@
 {
   "name": "@fordi-org/buildless",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Write react-like apps without a build process",
   "author": "",
   "scripts": {
