@@ -2,21 +2,18 @@
   "name": "@fordi-org/buildless",
   "version": "1.0.1",
   "description": "Write react-like apps without a build process",
-  "author": "Bryan Elliott <fordiman@gmail.com> (https://fordi.org)",
+  "author": "",
   "scripts": {
-    "build": "microbundle -i src/index.js -o dist/buildless.js --raw --compress --strict -f modern",
-    "start": "http-server ."
+    "build": "microbundle -i src/index.js -o dist/buildless.js --raw --compress --strict -f modern"
   },
   "repository": {
     "type": "git",
     "url": "github:Fordi/buildless"
   },
   "browser": "dist/buildless.modern.js",
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "htm": "^3.0.4",
-    "http-server": "^0.12.3",
     "microbundle": "^0.12.2",
     "preact": "^10.4.5"
   },
