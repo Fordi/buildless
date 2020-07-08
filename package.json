@@ -1,10 +1,12 @@
 {
   "name": "@fordi-org/buildless",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Write react-like apps without a build process",
   "author": "",
   "scripts": {
-    "build": "microbundle -i src/index.js -o dist/buildless.js --raw --compress --strict -f modern"
+    "build:runtime": "microbundle -i src/index.js -o dist/buildless.js --raw --compress --strict -f modern",
+    "build:prod": "microbundle -i src/prod.js -o dist/buildless.prod.js --raw --compress --strict -f modern",
+    "build": "npm run build:runtime && npm run build:prod"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,8 @@
   "files": [
     "dist/buildless.modern.js",
     "dist/buildless.modern.js.map",
+    "dist/buildless.prod.modern.js",
+    "dist/buildless.prod.modern.js.map",
     "README.md"
   ],
   "engines": {
