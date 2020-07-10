@@ -1,11 +1,12 @@
 {
   "name": "@fordi-org/buildless",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Write react-like apps without a build process",
   "author": "",
   "scripts": {
     "build:runtime": "microbundle -i src/index.js -o dist/buildless.js --raw --compress --strict -f modern",
     "build:prod": "microbundle -i src/prod.js -o dist/buildless.prod.js --raw --compress --strict -f modern",
+    "build:ununpkg": "microbundle -i src/babel-plugin-ununpkg.js -o dist/babel-plugin-ununpkg.js --raw --compress --strict -f -modern",
     "build": "npm run build:runtime && npm run build:prod"
   },
   "repository": {
@@ -19,12 +20,44 @@
     "microbundle": "^0.12.2",
     "preact": "^10.4.5"
   },
+  "dependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-htm": "^3.0.0",
+    "babel-plugin-minify-constant-folding": "^0.5.0",
+    "babel-plugin-minify-dead-code-elimination": "^0.5.1",
+    "babel-plugin-minify-flip-comparisons": "^0.4.3",
+    "babel-plugin-minify-guarded-expressions": "^0.4.4",
+    "babel-plugin-minify-infinity": "^0.4.3",
+    "babel-plugin-minify-mangle-names": "^0.5.0",
+    "babel-plugin-minify-replace": "^0.5.0",
+    "babel-plugin-minify-simplify": "^0.5.1",
+    "babel-plugin-minify-type-constructors": "^0.4.3",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-transform-member-expression-literals": "^6.9.4",
+    "babel-plugin-transform-merge-sibling-variables": "^6.9.4",
+    "babel-plugin-transform-minify-booleans": "^6.9.4",
+    "babel-plugin-transform-property-literals": "^6.9.4",
+    "babel-plugin-transform-simplify-comparison-operators": "^6.9.4",
+    "babel-plugin-transform-undefined-to-void": "^6.9.4",
+    "clean-css": "^4.2.3",
+    "copy-webpack-plugin": "^6.0.3",
+    "http-server": "^0.12.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  },
   "files": [
     "dist/buildless.modern.js",
     "dist/buildless.modern.js.map",
     "dist/buildless.prod.modern.js",
     "dist/buildless.prod.modern.js.map",
-    "README.md"
+    "lib/babel-plugin-css.js",
+    "lib/babel-plugin-ununpkg.js",
+    "lib/webpack.config.js",
+    "README.md",
+    "buildless-css.md",
+    "production.md"
   ],
   "engines": {
     "node": ">=10.21.0"
