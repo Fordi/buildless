@@ -5,6 +5,10 @@ A tiny (6k) compilation of [Preact](https://preactjs.com/) and [HTM](https://git
 that allows you to write modern web applications with little-to-no framework, and without a compilation
 step.
 
+The goal here is that you should be able to create apps whose source runs directly
+in the browser - just like the olden days - but which take can take full advantage
+of JavaScript features that modern browsers now ubiquitously support.
+
 ## What?
 
 A minimal buildless app looks like this:
@@ -30,16 +34,16 @@ A minimal buildless app looks like this:
         `;
       };
 
-      render(html`<${ClickCounter}/>`, document.getElementById('example'));
+      render(html`<${ClickCounter}/>`, document.body);
     </script>
   </head>
-  <body>
-    <div id="example"></div>
-  </body>
+  <body></body>
 </html>
 ```
 
-That's it.  No build required.  Just serve up that file.
+That's it.  No build required.  Just serve up that file.  If you're feeling
+like that's too terse, you can throw all your code into an `index.js`, and replace
+that script tag with `<script async defer type="module" src="./index.js"></script>`.
 
 ## What's the catch?
 
@@ -54,10 +58,12 @@ Other than [`buildless-css`](buildless-css.md), none, really.  Everything in
 [`preact`](https://preactjs.com/guide/v10/api-reference) and
 [`preact/hooks`](https://preactjs.com/guide/v10/hooks) is exported from the
 one module, so they are your documentation, along with
-[`htm`](https://github.com/developit/htm).
+[`htm`](https://github.com/developit/htm) and
+[`buildless-css`](buildless-css.md).
 
 Go. Play. Build some neat stuff.
 
 ## But what if I want to build anyway?
 
-\*sigh\* fine.  Go [here](production.md) for information on how to make a production build.
+\*sigh\* fine.  Go [here](production.md) for information on how to make a
+production build.
