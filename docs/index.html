@@ -1,29 +1,105 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Preact+HTM+Modules test</title>
+    <title>Buildless demo</title>
     <script type="module">
-      import { render, useState, html } from 'https://unpkg.com/@fordi-org/buildless@1.0.2/dist/buildless.modern.js';
+      import { render, useState, html, css } from 'https://unpkg.com/@fordi-org/buildless';
+      const theme = {
+        background: '#333',
+        primary: '#EEE',
+        primaryVariant: '#FFF',
+        secondary: '#2cf',
+        secondaryVariant: '#29c',
+        accent: '#EE3',
+      };
+      const styles = css`
+        html, body {
+          background-color: ${theme.background};
+          color: ${theme.primary};
+          font-family: sans-serif;
+        }
+        .demo {
+          width: 50vw;
+          margin: 0 auto;
+          padding-top: 2rem;
+          text-align: center;
+        }
+        .button {
+          border: none;
+          background: ${theme.secondary};
+          padding: 10px;
+          border-radius: calc(10px + 1.6em);
+        }
+        .button:focus {
+          outline: none;
+        }
+        .button:active {
+          background: ${theme.secondaryVariant};
+          color: ${theme.primaryVariant};
+        }
+        .button:hover {
+          background: ${theme.secondaryVariant};
+        }
+        a, a:link, a:visited {
+          position: relative;
+          color: white;
+          text-decoration: none;
+        }
+        a:before, a:after {
+          color: ${theme.accent};
+          position: absolute;
+          text-decoration: none;
+          top: -0.75em;
+          font-size: 0.6em;
+          text-shadow: 0 0 5px black;
+        }
+        a:before {
+          content: '✧･ﾟ: *✧･ﾟ:*';
+          left: -1em;
+          transform: rotate(-10deg);
+        }
+        a:after {
+          content: '*:･ﾟ✧*:･ﾟ✧';
+          right: -1em;
+          transform: rotate(10deg);
+        }
+      `;
 
       const ClickCounter = () => {
         const [count, setCount] = useState(0);
         return html`
-          <button onClick=${() => setCount(count + 1)}>
+          <button className=${styles.button} onClick=${() => setCount(count + 1)}>
             Clicked ${count} times
           </button>
         `;
       };
 
+      const ExtLink = ({ children, ...props }) => html`
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          ...${props}
+        >
+          ${children}
+        </a>
+     `;
+
       const App = () => html`
-        <div className="demo-app">
+        <div className=${styles.demo}>
           <p>
-            This is a simple demo app for <a href="https://github.com/Fordi/buildless">Buildless</a>.
+            This is a simple demo app for <${ExtLink} href="https://github.com/Fordi/buildless">Buildless<//>.
           </p>
           <p>
             Have a look at this page's source to understand.
           </p>
           <p>
             Meanwhile, click this button: <${ClickCounter}/>
+          </p>
+          <p>
+            Note: There's no need for the source to all be on this page; it's only like
+            this for the benefit of devs looking to get a handle
+            on <${ExtLink} href="https://github.com/Fordi/buildless">Buildless<//>
+            at a glance.
           </p>
         </div>
       `;
