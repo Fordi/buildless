@@ -35,7 +35,15 @@ member, which accepts a list of classNames and falsy values (which are skipped).
 
 If you need to write a list of regular (non-parsed) class names (for example, to
 add to a `className` prop, or to reference global styles), you can use the
-export `classes(...classList)`, which works in exactly the same way.
+export `classes(...classList)`, which works in exactly the same way, e.g.,
+
+```javascript
+  export default ({ isFeatured, children }) => html`
+    <article className=${classes('main', isFeatured && 'main--featured')}>
+      ${children}
+    </article>
+  `;
+```
 
 Both `and()` and `classes()` return decorated class name objects, so you can
 chain away to your heart's content.
