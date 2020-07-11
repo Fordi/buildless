@@ -102,15 +102,6 @@
         @keyframes wiggle-right { ${genFrames(10)} }
       `;
 
-      const ClickCounter = () => {
-        const [count, setCount] = useState(0);
-        return html`
-          <button className=${styles.button} onClick=${() => setCount(count + 1)}>
-            Clicked ${count} times
-          </button>
-        `;
-      };
-
       const ExtLink = ({ children, ...props }) => html`
         <a
           target="_blank"
@@ -255,9 +246,6 @@
             served directly from a single HTML page.
           </p>
           <p>For a more complex example, you can check my <${PortfolioLink} />.</p>
-          <p>
-            Meanwhile, click this button: <${ClickCounter} />
-          </p>
           <p>
             Note: There's no need for the source to all be on this page; it's only like
             this for the benefit of devs looking to get a handle
