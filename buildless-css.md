@@ -30,8 +30,11 @@ This will work uncompiled, but also, the production build will automagically
 minify any CSS used here.
 
 What `css` returns is an object containing decorated class names.  Technically,
-they're objects with a `toString()` function, plus an `and(...classList)`
+they're functions with a `toString()` function, plus an `.and(...classList)`
 member, which accepts a list of classNames and falsy values (which are skipped).
+The function itself does the same thing as `.and()`, which is just there to look
+more semantic.  e.g., `styles.about('some-other-style')` is equivalent to what's
+written above, but doesn't read as nicely.
 
 The actual classnames returned are slugged with a random ID to avoid collisions,
 (e.g., `about` becomes something like `about_uozl828xzod`), so each class name

@@ -1,9 +1,12 @@
-const joinClass = (...classes) => Array.from(new Set(classes.filter(a => !!a).join(' ').split(' '))).join(' ');
+const joinClass = (...classes) => Array.from(new Set(classes.filter(a => !!a).join(' ').split(' ').reverse())).reverse().join(' ');
 
-export const classes = (...names) => ({
-  toString: () => joinClass(...names),
-  and: (...more) => classes(...names, ...more),
-});
+export const classes = (...names) => Object.assign(
+  () => joinClass(...names),
+  {
+    toString: () => joinClass(...names),
+    and: (...more) => classes(...names, ...more),
+  }
+);
 
 export const css = (...args) => {
   const rid = Math.random().toString(36).substr(2);
