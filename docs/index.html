@@ -12,6 +12,31 @@
         secondaryVariant: '#29c',
         accent: '#EE3',
       };
+      // This is a stupid thing that just generates a bunch of random keyframe transforms.
+      const genFrames = (baseRotation) => {
+        const filling = (min, max, items, digits) => {
+          const x = [];
+          const mul = Math.pow(10, digits);
+          const div = Math.pow(10, -digits);
+          for (let i = 0; i < items; i++) x[i] = Math.random();
+          const t = x.reduce((s, v) => s + v, 0);
+          return x.map(v => Math.round((v * (max - min) / t + min) * mul) / mul);
+        };
+        const keyframes = [];
+        for (let i = 0; i < 100; i+= 5) {
+          const [rotate, skewX, skewY] = filling(-5, 5, 3, 2);
+          const [scaleX, scaleY] = filling(-0.25, 0.33, 2, 2);
+          const [transX, transY] = filling(-3, 3, 2, 0);
+          const transform = `transform: rotate(${baseRotation + rotate}deg) skew(${skewX}deg, ${skewY}deg) scale(${1+scaleX}, ${1+scaleY}) translate(${transX}px, ${transY}px);`
+          if (i === 0) {
+            keyframes.push(`100% { ${transform} }`);
+          }
+          keyframes.push(`${i}% { ${transform} }`);
+        }
+        // Move `100%` to the end
+        keyframes.push(keyframes.shift());
+        return keyframes.join('\n');
+      }
       const styles = css`
         html, body {
           background-color: ${theme.background};
@@ -45,24 +70,32 @@
           color: white;
           text-decoration: none;
         }
+        a:hover:before, a:hover:after {
+          animation-duration: 1s;
+        }
         a:before, a:after {
-          color: ${theme.accent};
+          color: white;
           position: absolute;
           text-decoration: none;
           top: -0.75em;
           font-size: 0.6em;
-          text-shadow: 0 0 5px black;
+          text-shadow: 0 0 2px ${theme.accent}, 0 0 5px ${theme.accent};
+          animation: 40s cubic-bezier(0.25, 0.5, 0.75, 0.5) -5s infinite;
         }
         a:before {
-          content: '✧･ﾟ: *✧･ﾟ:*';
-          left: -1em;
+          content: '✧･ﾟ:*✧･ﾟ:*';
+          left: 0.5em;
           transform: rotate(-10deg);
+          animation-name: wiggle-left !important;
         }
         a:after {
           content: '*:･ﾟ✧*:･ﾟ✧';
-          right: -1em;
+          right: 0.5em;
           transform: rotate(10deg);
+          animation-name: wiggle-right !important;
         }
+        @keyframes wiggle-left { ${genFrames(-10)} }
+        @keyframes wiggle-right { ${genFrames(10)} }
       `;
 
       const ClickCounter = () => {
@@ -98,8 +131,7 @@
           <p>
             Note: There's no need for the source to all be on this page; it's only like
             this for the benefit of devs looking to get a handle
-            on <${ExtLink} href="https://github.com/Fordi/buildless">Buildless<//>
-            at a glance.
+            on <${ExtLink} href="https://github.com/Fordi/buildless">Buildless<//> at a glance.
           </p>
         </div>
       `;
