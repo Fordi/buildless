@@ -33,6 +33,10 @@ What `css` returns is an object containing decorated class names.  Technically,
 they're objects with a `toString()` function, plus an `and(...classList)`
 member, which accepts a list of classNames and falsy values (which are skipped).
 
+The actual classnames returned are slugged with a random ID to avoid collisions,
+(e.g., `about` becomes something like `about_uozl828xzod`), so each class name
+is unique (this is similar to what Webpack does with CSS modules).
+
 If you need to write a list of regular (non-parsed) class names (for example, to
 add to a `className` prop, or to reference global styles), you can use the
 export `classes(...classList)`, which works in exactly the same way, e.g.,
@@ -45,5 +49,5 @@ export `classes(...classList)`, which works in exactly the same way, e.g.,
   `;
 ```
 
-Both `and()` and `classes()` return decorated class name objects, so you can
-chain away to your heart's content.
+Both `and()` and `classes()` both return decorated class name objects, so you
+can chain away to your heart's content.
