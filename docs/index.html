@@ -230,17 +230,32 @@
         `;
       };
 
+      const BuildlessLink = html`<${ExtLink} className=${styles.buildless} href="https://github.com/Fordi/buildless">Buildless<//>`;
+      const PreactLink = html`<${ExtLink} href="https://preactjs.com/">Preact<//>`;
+      const HtmLink = html`<${ExtLink} href="https://github.com/developit/htm">HTM<//>`;
+      const PortfolioLink = html`<${ExtLink} href="https://github.com/Fordi/fordi-org">portfolio site<//>`;
       const App = () => html`
         <div className=${styles.demo}>
           <p>
-            This is a simple demo app for <${ExtLink} className=${styles.buildless} href="https://github.com/Fordi/buildless">Buildless<//>.
+            This is a simple demo app for <${BuildlessLink} />.
           </p>
           <p>
-            Have a look at this page's source to understand.  For a more complex
-            example, you can check my <${ExtLink} href="https://github.com/fordi/fordi-org">portfolio site<//>
+            Buildless is a tiny (6k) compilation of <${PreactLink} /> and <${HtmLink} />
+            that allows you to write modern web applications with little-to-no framework, and without a compilation
+            step.
           </p>
           <p>
-            Meanwhile, click this button: <${ClickCounter}/>
+            The goal here is that you should be able to create apps whose source runs directly
+            in the browser - just like the olden days - but which take can take full advantage
+            of JavaScript features that modern browsers now ubiquitously support.
+          </p>
+          <p>
+            Have a look at this page's source to understand.  Everything you see here is in human-readable source,
+            served directly from a single HTML page.  For a more complex example, you can check my
+            <${PortfolioLink} />.
+          </p>
+          <p>
+            Meanwhile, click this button: <${ClickCounter} />
           </p>
           <p>
             Note: There's no need for the source to all be on this page; it's only like
