@@ -1,8 +1,10 @@
 Buildless
 ---------
 
-A tiny (6k) compilation of [Preact](https://preactjs.com/) and [HTM](https://github.com/developit/htm)
-that allows you to write modern web applications with little-to-no framework, and without a compilation
+A tiny (6k) compilation of [Preact](https://preactjs.com/) and
+[HTM](https://github.com/developit/htm) - along with a small
+[css](buildless-css.md) helper of my own devising - that allows you to write
+modern web applications with little-to-no framework, and without a compilation
 step.
 
 The goal here is that you should be able to create apps whose source runs directly
