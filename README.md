@@ -9,6 +9,9 @@ The goal here is that you should be able to create apps whose source runs direct
 in the browser - just like the olden days - but which take can take full advantage
 of JavaScript features that modern browsers now ubiquitously support.
 
+If you're impatient, and just want to see some code in-use, demo is
+[here](https://fordi.github.io/buildless/).
+
 ## What?
 
 A minimal buildless app looks like this:
