@@ -28,9 +28,6 @@ export const css = (...args) => {
 };
 
 const head = document.querySelector('head');
-const staticRules = Array.from(document.styleSheets).reduce((s, sheet) => (
-  [...s, ...Array.from(sheet.cssRules).map(rule => rule.cssText)]
-), []);
 
 const sheets = head.appendChild(document.createElement('style')).sheet;
 const allRules = a => (
