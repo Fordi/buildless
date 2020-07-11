@@ -1,14 +1,3 @@
-const clsRx = /\.([^ \.\[:>,]+)/g;
-
-const insertRule = (rule, id) => {
-  const index = sheets.insertRule(rule);
-  const classes = {};
-  allRules(sheets.cssRules[index]).forEach(r => {
-    r.selectorText = r.selectorText.replace(clsRx, (_, m) => `.${classes[m] = `${m}_${id}`}`);
-  });
-  return classes;
-};
-
 const joinClass = (...classes) => Array.from(new Set(classes.filter(a => !!a).join(' ').split(' '))).join(' ');
 
 export const classes = (...names) => ({
@@ -28,8 +17,17 @@ export const css = (...args) => {
 };
 
 const head = document.querySelector('head');
+const { sheet } = head.appendChild(document.createElement('style'));
 
-const sheets = head.appendChild(document.createElement('style')).sheet;
+const clsRx = /\.([^ \.\[:>,]+)/g;
+
+const insertRule = (rule, id) => {
+  return allRules(sheet.cssRules[sheet.insertRule(rule)]).reduce((cls, r) => {
+    r.selectorText = r.selectorText.replace(clsRx, (_, m) => `.${cls[m] = `${m}_${id}`}`);
+    return cls;
+  }, {});
+};
+
 const allRules = a => (
   a.selectorText
     ? [a]
