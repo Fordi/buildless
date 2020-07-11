@@ -3,14 +3,16 @@
   <head>
     <title>Buildless demo</title>
     <script type="module">
-      import { render, useState, html, css } from 'https://unpkg.com/@fordi-org/buildless';
+      import { render, useState, useEffect, html, css } from 'https://unpkg.com/@fordi-org/buildless';
       const theme = {
         background: '#333',
+        backgroundVariant: '#222',
         primary: '#EEE',
         primaryVariant: '#FFF',
         secondary: '#2cf',
         secondaryVariant: '#29c',
         accent: '#EE3',
+        danger: '#E90',
       };
       // This is a stupid thing that just generates a bunch of random keyframe transforms.
       const genFrames = (baseRotation) => {
@@ -115,7 +117,111 @@
         >
           ${children}
         </a>
-     `;
+      `;
+
+      const todoStyles = css`
+        .todoList {
+
+        }
+        .todoList .todo:nth-of-type(2n) {
+          background: ${theme.backgroundVariant};
+        }
+        .todo {
+          display: flex;
+          flex-direction: row;
+        }
+        .todo input[type="text"] {
+          border: none;
+          background: none;
+          color: ${theme.primary};
+          flex: 1 1 auto;
+        }
+        .todo input[type="text"][disabled] {
+          text-decoration: line-through;
+        }
+        .todo input[type="checkbox"] {
+          margin: 10px 3px 0;
+        }
+        .smallButton {
+          width: 29px;
+          height: 29px;
+          box-sizing: border-box;
+          overflow: hidden;
+          color: transparent;
+          background: ${theme.secondary};
+          border: none;
+          border-radius: 15px;
+          margin: 3px;
+          position: relative;
+        }
+        .smallButton:before {
+          color: white;
+          left: 0;
+          top: 0;
+          line-height: 30px;
+          font-weight: bold;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+        }
+        .smallButton.removeTodo {
+          background: ${theme.danger};
+        }
+        .removeTodo:before {
+          content: '+';
+          font-size: 1.6em;
+          transform: rotate(45deg);
+        }
+        .addTodo:before {
+          content: '+';
+          font-size: 1.6em;
+        }
+      `;
+
+      const ToDo = ({ item, update, remove }) => {
+        return html`
+          <div className=${todoStyles.todo}>
+            <input type="checkbox" onChange=${({ target }) => update(item, { done: target.checked })} checked=${item.done} />
+            <input type="text" disabled=${item.done} value=${item.content} onChange=${({ target }) => update(item, { content: target.value })} />
+            <button className=${todoStyles.smallButton.and(todoStyles.removeTodo)} onClick=${() => remove(item)}>Remove</button>
+          </div>
+        `;
+      };
+      const defaultList = [
+        { done: true, content: 'Write a ToDo list' },
+        { done: false, content: 'Do something cool' },
+      ];
+      const ToDoList = () => {
+        const [todoList, setToDoList] = useState(JSON.parse(localStorage.getItem('todo-list') || JSON.stringify(defaultList)));
+        useEffect(() => {
+          localStorage.setItem('todo-list', JSON.stringify(todoList));
+        }, [todoList]);
+        const update = (item, updates) => {
+          const tmp = todoList.slice();
+          tmp.splice(todoList.indexOf(item), 1, { ...item, ...updates });
+          setToDoList(tmp);
+
+        };
+        const remove = (item) => {
+          const tmp = todoList.slice();
+          tmp.splice(todoList.indexOf(item), 1);
+          setToDoList(tmp);
+        };
+        const add = () => {
+          setToDoList(todoList.concat([{ content: '', done: false }]));
+        };
+        const clearComplete = () => {
+          setToDoList(todoList.filter(item => !item.done));
+        };
+        return html`
+          <div class=${todoStyles.todoList}>
+            ${todoList.map(item => html`<${ToDo} item=${item} update=${update} remove=${remove} />`)}
+            <button className=${todoStyles.smallButton.and(todoStyles.addTodo)} onClick=${add}>Add</button>
+            <button className=${styles.button.and(todoStyles.clearComplete)} onClick=${clearComplete} disabled=${!todoList.find(item => item.done)}>Clear complete</button>
+          </div>
+        `;
+      };
 
       const App = () => html`
         <div className=${styles.demo}>
@@ -133,6 +239,10 @@
             this for the benefit of devs looking to get a handle
             on <${ExtLink} href="https://github.com/Fordi/buildless">Buildless<//> at a glance.
           </p>
+          <p>
+            A ToDo list, since no JS framework is complete without one.
+          </p>
+          <${ToDoList} />
         </div>
       `;
 
