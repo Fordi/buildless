@@ -230,10 +230,11 @@
         `;
       };
 
-      const BuildlessLink = html`<${ExtLink} className=${styles.buildless} href="https://github.com/Fordi/buildless">Buildless<//>`;
-      const PreactLink = html`<${ExtLink} href="https://preactjs.com/">Preact<//>`;
-      const HtmLink = html`<${ExtLink} href="https://github.com/developit/htm">HTM<//>`;
-      const PortfolioLink = html`<${ExtLink} href="https://github.com/Fordi/fordi-org">portfolio site<//>`;
+      const BuildlessLink = () => html`<${ExtLink} className=${styles.buildless} href="https://github.com/Fordi/buildless">Buildless<//>`;
+      const PreactLink = () => html`<${ExtLink} href="https://preactjs.com/">Preact<//>`;
+      const HtmLink = () => html`<${ExtLink} href="https://github.com/developit/htm">HTM<//>`;
+      const PortfolioLink = () => html`<${ExtLink} href="https://github.com/Fordi/fordi-org">portfolio site<//>`;
+
       const App = () => html`
         <div className=${styles.demo}>
           <p>
