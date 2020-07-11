@@ -9,6 +9,7 @@ const BuildlessLink = () => html`<${ExtLink} className=${buildless} href="https:
 const PreactLink = () => html`<${ExtLink} href="https://preactjs.com/">Preact<//>`;
 const HtmLink = () => html`<${ExtLink} href="https://github.com/developit/htm">HTM<//>`;
 const PortfolioLink = () => html`<${ExtLink} href="https://github.com/Fordi/fordi-org">portfolio site<//>`;
+const SourceLink = () => html`<${ExtLink} href="https://github.com/Fordi/buildless/tree/master/docs"">source<//>`;
 
 export default () => html`
   <div className=${demo}>
@@ -26,8 +27,9 @@ export default () => html`
       of JavaScript features that modern browsers now ubiquitously support.
     </p>
     <p>
-      Have a look at this page's source to understand.  Everything you see here is in human-readable source,
-      served directly from an HTML page and a short stack of JS files.
+      Have a look at this page's <${SourceLink} /> to understand.  Everything
+      you see here is in human-readable source, served directly from an HTML
+      page and a short stack of JS files.
     </p>
     <p>For a more complex example, you can check my <${PortfolioLink} />.</p>
     <p>
