@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { dirname, resolve } = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');

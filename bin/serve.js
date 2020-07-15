@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { statSync } = require('fs');
 const { resolve, dirname } = require('path');
 const express = require('express');
