@@ -1,12 +1,18 @@
 const { dirname, resolve } = require('path');
+const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const { root, package: { buildless = {} } } = require('../lib/getProject')();
 
-module.exports = ({ entry = './src/index.js', outputDir = './dist', } = {}) => ({
+const {
+  entry = './src/index.js',
+  dist = 'dist',
+} = buildless;
+
+webpack({
   mode: 'production',
-  entry,
+  entry: resolve(root, entry),
   output: {
-    filename: 'index.js',
-    path: resolve(require.main.filename.replace(/[\\\\\/]node_modules[\\\\\/].*/, ''), outputDir),
+    path: resolve(root, dist),
   },
   module: {
     rules: [
@@ -67,4 +73,11 @@ module.exports = ({ entry = './src/index.js', outputDir = './dist', } = {}) => (
       }]
     })
   ]
+}, (err, stats) => {
+  if (err) throw err;
+  const { errors, warnings, fileDependencies } = stats.compilation;
+  if (errors) {
+    errors.forEach(error => console.warn(error))
+  }
+  console.log(`Processed ${fileDependencies.size} scripts in ${(stats.endTime - stats.startTime) / 1000}s`);
 });

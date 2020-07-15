@@ -24,17 +24,12 @@ in from your index.html and replaced with:
       ```json
       "browser": "dist/index.html",
       "scripts": {
-        "build": "webpack",
-        "src": "http-server src",
-        "dist": "http-server dist",
+        "build": "buildless-build",
+        "src": "buildless-serve src",
+        "dist": "buildless-serve prod",
         "clean": "rm -rf dist"      
       },
       ```
-
-4. Last, create a `webpack.config.js` containing the following:
-    ```javascript
-    module.exports = require('@fordi-org/buildless/lib/webpack.config.js')();
-    ```
 
 ## Build
 

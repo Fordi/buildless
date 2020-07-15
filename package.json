@@ -1,6 +1,6 @@
 {
   "name": "@fordi-org/buildless",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Write react-like apps without a build process",
   "author": "",
   "scripts": {
@@ -14,6 +14,10 @@
     "url": "github:Fordi/buildless"
   },
   "browser": "dist/buildless.modern.js",
+  "bin": {
+    "buildless-build": "./bin/build.js",
+    "buildless-serve": "./bin/serve.js"
+  },
   "license": "ISC",
   "devDependencies": {
     "htm": "^3.0.4",
@@ -43,7 +47,7 @@
     "babel-plugin-transform-undefined-to-void": "^6.9.4",
     "clean-css": "^4.2.3",
     "copy-webpack-plugin": "^6.0.3",
-    "http-server": "^0.12.3",
+    "express": "^4.17.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
   },
@@ -55,6 +59,7 @@
     "lib/babel-plugin-css.js",
     "lib/babel-plugin-ununpkg.js",
     "lib/webpack.config.js",
+    "lib/devserver.js",
     "README.md",
     "buildless-css.md",
     "production.md"
