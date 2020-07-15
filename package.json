@@ -1,6 +1,6 @@
 {
   "name": "@fordi-org/buildless",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Write react-like apps without a build process",
   "author": "",
   "scripts": {
@@ -58,8 +58,9 @@
     "dist/buildless.prod.modern.js.map",
     "lib/babel-plugin-css.js",
     "lib/babel-plugin-ununpkg.js",
-    "lib/webpack.config.js",
-    "lib/devserver.js",
+    "lib/getProject.js",
+    "bin/serve.js",
+    "bin/build.js",
     "README.md",
     "buildless-css.md",
     "production.md"
