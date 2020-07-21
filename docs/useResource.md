@@ -135,3 +135,23 @@ The current state of the cache for this resource.
 Return the cache object for another resource, by its key.  If the
 resource has not been cached, this is null, so you'll usually want
 to chain it conditionally, e.g., `cache.for('other')?.stale()`.
+
+Note that `fetch` does _not_ return an error on a non-OK HTTP code.  You have
+to detect and handle that sort of thing yourself.
+
+I'm considering adding this to buildless for that reason:
+
+```javascript
+const fetchJson = async (url, { body, ...props} = {}) => {
+  const response = await fetch(url, {
+    ...props,
+    ...(body && {
+      body: typeof body === 'string' ? body : JSON.stringify(body),
+      headers: { 'content-type': 'application/json' },
+    }),
+  });
+  const { ok, status, statusText } = response;
+  if (!response.ok) throw Object.assign(new Error(`HTTP ${status} ${statusText}`), { status, statusText });
+  return response.json();
+};
+```
