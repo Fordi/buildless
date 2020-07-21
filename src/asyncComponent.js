@@ -4,14 +4,14 @@ export default ({
   useState,
   useEffect,
 }) => ({
-  componentPath,
+  path,
   names,
   Loading: Loader = () => null,
 }) => {
-  const path = new URL(componentPath, Object.assign(document.createElement('a'), { href: '.' }).href).toString();
+  const p = new URL(path, Object.assign(document.createElement('a'), { href: '.' }).href).toString();
   const buildComponent = name => {
     const getComponent = () => {
-      const mod = moduleCache[path];
+      const mod = moduleCache[p];
       if (!mod || mod.then) return null;
       return mod[name];
     };
@@ -19,11 +19,11 @@ export default ({
       const [Comp, setComp] = useState(getComponent);
       useEffect(() => {
         if (Comp) return;
-        if (!moduleCache[path] || !moduleCache.then) {
-          moduleCache[path] = import(path);
+        if (!moduleCache[p] || !moduleCache.then) {
+          moduleCache[p] = import(p);
         }
-        moduleCache[path].then(mod => {
-          moduleCache[path] = mod;
+        moduleCache[p].then(mod => {
+          moduleCache[p] = mod;
           setComp(getComponent);
         });
       }, []);
