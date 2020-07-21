@@ -1,37 +1,20 @@
-const moduleCache = {};
 export default ({
   createElement,
   useState,
   useEffect,
-}) => ({
-  path,
-  names,
-  Loading: Loader = () => null,
-}) => {
-  const p = new URL(path, Object.assign(document.createElement('a'), { href: '.' }).href).toString();
+}) => (promisor, Loading, ...names) => {
   const buildComponent = name => {
-    const getComponent = () => {
-      const mod = moduleCache[p];
-      if (!mod || mod.then) return null;
-      return mod[name];
-    };
     return props => {
-      const [Comp, setComp] = useState(getComponent);
+      const [{ Comp }, setComp] = useState({ Comp: Loading });
       useEffect(() => {
-        if (Comp) return;
-        if (!moduleCache[p] || !moduleCache.then) {
-          moduleCache[p] = import(p);
-        }
-        moduleCache[p].then(mod => {
-          moduleCache[p] = mod;
-          setComp(getComponent);
+        promisor().then(mod => {
+          setComp({ Comp: mod[name] });
         });
       }, []);
-      if (Comp) return createElement(Comp, props);
-      return createElement(Loader, props);
+      return createElement(Comp, props);
     };
   };
-  if (names) {
+  if (names.length) {
     return names.reduce((obj, name) => ({ ...obj, [name]: buildComponent(name) }));
   }
   return buildComponent('default');

@@ -15,6 +15,7 @@ webpack({
   entry: resolve(root, entry),
   output: {
     path: resolve(root, dist),
+    filename: 'index.js',
   },
   module: {
     rules: [
