@@ -19,6 +19,9 @@ the module has loaded.
 
 The components returned can be used like any other component.
 
+**Note**: asyncComponent does not yet work with the integrated build process.
+I promise, it's next on my TODO list.
+
 ## Example
 
 ```javascript
