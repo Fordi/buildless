@@ -14,7 +14,7 @@
 if the component has not yet been imported, or the loaded component if it has.
 
 The variant, `asyncComponent({ path, names, Loading })` behaves similarly, but
-returns an object with matching named to `names`, which are then unpacked once
+returns an object with keys matching `names`, which are then unpacked once
 the module has loaded.
 
 The components returned can be used like any other component.
