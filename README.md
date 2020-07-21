@@ -1,18 +1,16 @@
 Buildless
 ---------
 
-A tiny (6k) compilation of [Preact](https://preactjs.com/) and
-[HTM](https://github.com/developit/htm) - along with a small
-[css](buildless-css.md) helper of my own devising - that allows you to write
-modern web applications with little-to-no framework, and without a compilation
-step.
+A small (20k) compilation of [Preact](https://preactjs.com/),
+[Preact Router](https://github.com/preactjs/preact-router), and
+[HTM](https://github.com/developit/htm) - along with a 
+[few of my own inventions](./docs/index.md) - that
+allows you to write modern web applications with little-to-no
+framework, and without a compilation step.
 
 The goal here is that you should be able to create apps whose source runs directly
 in the browser - just like the olden days - but which take can take full advantage
 of JavaScript features that modern browsers now ubiquitously support.
-
-If you're impatient, and just want to see some code in-use, demo is
-[here](https://fordi.github.io/buildless/).
 
 ## What?
 
@@ -23,7 +21,7 @@ A minimal buildless app looks like this:
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Preact+HTM+Modules test</title>
+    <title>Simple Buildless app</title>
     <script type="module">
       import { render, useState, html } from 'https://unpkg.com/@fordi-org/buildless';
 
@@ -59,12 +57,13 @@ users will work).
 
 ## So... documentation?
 
-Other than [`buildless-css`](buildless-css.md), none, really.  Everything in
-[`preact`](https://preactjs.com/guide/v10/api-reference) and
-[`preact/hooks`](https://preactjs.com/guide/v10/hooks) is exported from the
-one module, so they are your documentation, along with
-[`htm`](https://github.com/developit/htm) and
-[`buildless-css`](buildless-css.md).
+Everything in
+[`preact`](https://preactjs.com/guide/v10/api-reference),
+[`preact/hooks`](https://preactjs.com/guide/v10/hooks), 
+and [`preact-router`](https://github.com/preactjs/preact-router)
+is exported from the one module, so they are most of your documentation, 
+along with a preact-bound instance [`htm`](https://github.com/developit/htm),
+and [the Buildless tools](./docs/index.md).
 
 Go. Play. Build some neat stuff.
 

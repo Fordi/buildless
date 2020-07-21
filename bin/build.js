@@ -57,7 +57,8 @@ webpack({
               ['babel-plugin-transform-minify-booleans'],
               ['babel-plugin-transform-property-literals'],
               ['babel-plugin-transform-simplify-comparison-operators'],
-              ['babel-plugin-transform-undefined-to-void']
+              ['babel-plugin-transform-undefined-to-void'],
+              ['@babel/plugin-proposal-optional-chaining'],
             ]
           }
         }

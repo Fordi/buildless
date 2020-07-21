@@ -1,12 +1,11 @@
 {
   "name": "@fordi-org/buildless",
-  "version": "1.0.11",
+  "version": "1.1.0",
   "description": "Write react-like apps without a build process",
   "author": "",
   "scripts": {
-    "build:runtime": "microbundle -i src/index.js -o dist/buildless.js --raw --compress --strict -f modern",
-    "build:prod": "microbundle -i src/prod.js -o dist/buildless.prod.js --raw --compress --strict -f modern",
-    "build:ununpkg": "microbundle -i src/babel-plugin-ununpkg.js -o dist/babel-plugin-ununpkg.js --raw --compress --strict -f -modern",
+    "build:runtime": "microbundle -i src/index.js -o dist/buildless.js --raw --compress false --strict -f modern",
+    "build:prod": "microbundle -i src/prod.js -o dist/buildless.prod.js --raw --strict -f modern",
     "build": "npm run build:runtime && npm run build:prod"
   },
   "repository": {
@@ -22,11 +21,14 @@
   "devDependencies": {
     "htm": "^3.0.4",
     "microbundle": "^0.12.3",
-    "preact": "^10.4.6"
+    "preact": "^10.4.6",
+    "preact-async-route": "^2.2.1",
+    "preact-router": "^3.2.1"
   },
   "dependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.10.4",
     "babel-loader": "^8.1.0",
     "babel-plugin-htm": "^3.0.0",
     "babel-plugin-minify-constant-folding": "^0.5.0",
