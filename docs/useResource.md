@@ -31,7 +31,7 @@ all components, and is cacheable.
 
 Typically, you won't want to define your resources inline - as above - since
 each resource could have a unique URL - for example `/articles/:articleId`.
-You'd want to make a generator, e.g.,
+You'd want to make a factory, e.g.,
 
 ```javascript
 const articleResource = (postId) => {
