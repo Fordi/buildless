@@ -4,10 +4,11 @@ export default ({
   useState,
   useEffect,
 }) => ({
-  path,
+  componentPath,
   names,
   Loading: Loader = () => null,
 }) => {
+  const path = new URL(componentPath, Object.assign(document.createElement('a'), { href: '.' }).href).toString();
   const buildComponent = name => {
     const getComponent = () => {
       const mod = moduleCache[path];
