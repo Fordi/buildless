@@ -15,6 +15,9 @@ const serverPath = mode === 'src' ? dirname(resolve(root, entry)) : resolve(root
 const app = express();
 const http = require('http');
 app.use(express.static(serverPath));
+app.use((req, res) => {
+  res.sendFile(resolve(serverPath, 'index.html'));
+});
 const port = parseInt(process.env.PORT) || 3000;
 http.createServer({}, app).listen(port, () => {
   console.log(`Serving static files in ${mode} mode from '${serverPath}' on http://localhost:${port}/`);
