@@ -4,6 +4,21 @@ const { statSync } = require('fs');
 const { resolve, dirname } = require('path');
 const express = require('express');
 const { root, package: { buildless = {} } } = require('../lib/getProject')();
+const os = require('os');
+
+const ifaces = os.networkInterfaces();
+const port = parseInt(process.env.PORT) || 3000;
+
+const urls = [`http://localhost:${port}/`];
+Object.keys(ifaces).forEach(name => {
+  ifaces[name].forEach(function (iface) {
+    if ('IPv4' !== iface.family || iface.internal !== false) {
+      // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+      return;
+    }
+    urls.push(`http://${iface.address}:${port}/`);
+  });    
+});
 
 const {
   entry = './src/index.js',
@@ -18,7 +33,7 @@ app.use(express.static(serverPath));
 app.use((req, res) => {
   res.sendFile(resolve(serverPath, 'index.html'));
 });
-const port = parseInt(process.env.PORT) || 3000;
+
 http.createServer({}, app).listen(port, () => {
-  console.log(`Serving static files in ${mode} mode from '${serverPath}' on http://localhost:${port}/`);
+  console.log(`Serving static files in ${mode} mode from '${serverPath}' on ${urls.join(', ')}`);
 });
