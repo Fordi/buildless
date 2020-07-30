@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Mega Man X1 Password Generator</title>
+    <script type="module" defer>
+      import { render, html, css, useState } from 'https://unpkg.com/@fordi-org/buildless';
+      const heart = 'Heart Tank';
+      const subTank = 'Sub-tank';
+      const levels = {
+        'Armored Armadillo': { heart, subTank },
+        'Launch Octopus': { heart },
+        'Chill Penguin': { heart, part: 'Leg Capsule' },
+        'Flame Mammoth': { heart, subTank, part: 'Arm Capsule' },
+        'Storm Eagle': { heart, subTank, part: 'Head Capsule' },
+        'Spark Mandrill': { heart, subTank },
+        'Sting Chameleon': { heart, part: 'Body Capsule' },
+        'Boomer Kuwanger': { heart },
+      };
+      const slugify = n => n.toLowerCase().replace(/\W+/g, '_');
+      const styles = css`
+      .options {}
+      .optionsRow {
+        display: flex;
+      }
+      .level {
+        width: 25%;
+        box-sizing: border-box;
+      }
+      `;
+      const MegaManXPassword = () => {
+        const [state, setState] = useState({});
+        const handleChange = ({ target: { id, checked } }) => setState({ ...state, [id]: checked });
+        const even = (...ids) => ids.reduce((sum, id) => sum ? state[id] : !state[id], true);
+
+        const rows = Object.keys(levels).reduce((rows, boss, index) => {
+          const slug = slugify(boss);
+          const level = levels[boss];
+          console.log(index >> 2, rows);
+          rows[(index >> 2)].push(html`
+            <fieldset className=${styles.level}>
+              <legend>${boss}</legend>
+              <div>
+                <input type="checkbox" onChange=${handleChange} id=${slug} />
+                <label htmlFor=${slug}>Beat</label>
+              </div>
+              ${level.heart && html`
+                <div>
+                  <input type="checkbox" onChange=${handleChange} id=${`${slug}_heart`} />
+                  <label htmlFor=${`${slug}_heart`}>${level.heart}</label>
+                </div>
+              `}
+              ${level.subTank && html`
+                <div>
+                  <input type="checkbox" onChange=${handleChange} id=${`${slug}_subTank`} />
+                  <label htmlFor=${`${slug}_subTank`}>${level.subTank}</label>
+                </div>
+              `}
+              ${level.part && html`
+                <div>
+                  <input type="checkbox" onChange=${handleChange} id=${`${slug}_part`} />
+                  <label htmlFor=${`${slug}_part`}>${level.part}</label>
+                </div>
+              `}
+            </fieldset>
+          `);
+          return rows;
+        }, [[],[]]);
+        const pick1 = (x, y, ...nums) => nums[x << 1 | y];
+        const pick2 = (c, x, y, ...nums) => c ? pick1(x, y, ...nums) : pick1(x, y, ...nums.slice(4));
+        return html`
+          <div className=${styles.options}>
+            ${rows.map(row => html`<div className=${styles.optionsRow}>${row}</div>`)}
+          </div>
+          <div className="password">
+            <table>
+              <tr>
+                <td>${pick2(
+                  even(
+                    'chill_penguin', 'flame_mammoth', 'storm_eagle_part', 'sting_chameleon_part',
+                    'flame_mammoth_part', 'spark_mandrill_subTank', 'storm_eagle_subTank',
+                    'launch_octopus_heart', 'sting_chameleon_heart'
+                  ),
+                  state.armored_armadillo_subTank,
+                  state.chill_penguin_heart,
+                  4,2,6,8,1,7,5,3
+                )}</td>
+                <td>${pick2(
+                  even(
+                    'armored_armadillo_heart', 'launch_octopus_heart', 'chill_penguin_heart',
+                    'flame_mammoth_heart', 'storm_eagle_heart', 'spark_mandrill_heart',
+                    'sting_chameleon_heart', 'boomer_kuwanger_heart'
+                  ),
+                  state.flame_mammoth,
+                  state.storm_eagle_part,
+                  7,6,3,4,8,5,2,1
+                )}</td>
+                <td>${pick1(
+                  state.flame_mammoth_subTank,
+                  state.flame_mammoth_heart,
+                  6,7,2,4
+                )}</td>
+                <td>${pick1(
+                  state.storm_eagle,
+                  state.storm_eagle_heart,
+                  4,8,7,1
+                )}</td>
+              </tr>
+              <tr>
+                <td>${pick2(
+                  even(
+                    'chill_penguin', 'flame_mammoth', 'boomer_kuwanger', 'storm_eagle',
+                    'armored_armadillo', 'flame_mammoth_part', 'armored_armadillo_subTank',
+                    'boomer_kuwanger_heart', 'armored_armadillo_heart'
+                  ),
+                  state.launch_octopus,
+                  state.sting_chameleon_part,
+                  8,7,4,2,1,5,6,3
+                )}</td>
+                <td>${pick2(
+                  even(
+                    'armored_armadillo_subTank', 'chill_penguin_part',
+                    'flame_mammoth_subTank', 'flame_mammoth_part',
+                    'storm_eagle_subTank', 'storm_eagle_part',
+                    'spark_mandrill_subTank', 'sting_chameleon_part'
+                  ),
+                  state.boomer_kuwanger,
+                  state.boomer_kuwanger_heart,
+                  4,6,8,1,7,5,2,3
+                )}
+                </td>
+                <td>${pick2(
+                  even(
+                    'launch_octopus', 'storm_eagle', 'storm_eagle_part', 'chill_penguin_heart',
+                    'flame_mammoth_heart', 'storm_eagle_subTank'
+                  ),
+                  state.armored_armadillo,
+                  state.flame_mammoth_part,
+                  8,6,5,3,1,2,4,7
+                )}</td>
+                <td>${pick1(
+                  state.spark_mandrill,
+                  state.sting_chameleon_heart,
+                  8,2,7,6
+                )}</td>
+              </tr>
+              <tr>
+                <td>${pick2(
+                  even(
+                    'boomer_kuwanger', 'armored_armadillo', 'sting_chameleon_part', 'spark_mandrill_subTank',
+                    'launch_octopus_heart', 'chill_penguin_heart', 'flame_mammoth_heart', 'boomer_kuwanger_heart',
+                    'sting_chameleon_heart',
+                  ),
+                  state.chill_penguin_part,
+                  state.armored_armadillo_heart,
+                  3,2,1,4,7,5,8,6
+                )}</td>
+                <td>${pick1(
+                  state.sting_chameleon,
+                  state.storm_eagle_subTank,
+                  7,5,6,4
+                )}
+                </td>
+                <td>${pick2(
+                  even(
+                    'armored_armadillo', 'launch_octopus', 'chill_penguin',
+                    'flame_mammoth', 'storm_eagle', 'spark_mandrill',
+                    'sting_chameleon', 'boomer_kuwanger'
+                  ),
+                  state.launch_octopus_heart,
+                  state.spark_mandrill_subTank,
+                  4,8,5,2,1,7,3,6
+                )}</td>
+                <td>${pick1(
+                  state.chill_penguin,
+                  state.spark_mandrill_heart,
+                  8,4,6,1
+                )}</td>
+              </tr>
+            </table>
+          </div>
+        `;
+      };
+      render(html`<${MegaManXPassword} />`, document.body);
+    </script>
+  </head>
+  <body></body>
+</html>
