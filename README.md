@@ -1,9 +1,9 @@
 Buildless
 ---------
 
-A small (20k) compilation of [Preact](https://preactjs.com/),
+A small (34k) compilation of [Preact](https://preactjs.com/),
 [Preact Router](https://github.com/preactjs/preact-router), and
-[HTM](https://github.com/developit/htm) - along with a 
+[HTM](https://github.com/developit/htm) - along with a
 [few of my own inventions](./docs/index.md) - that
 allows you to write modern web applications with little-to-no
 framework, and without a compilation step.
@@ -59,9 +59,9 @@ users will work).
 
 Everything in
 [`preact`](https://preactjs.com/guide/v10/api-reference),
-[`preact/hooks`](https://preactjs.com/guide/v10/hooks), 
+[`preact/hooks`](https://preactjs.com/guide/v10/hooks),
 and [`preact-router`](https://github.com/preactjs/preact-router)
-is exported from the one module, so they are most of your documentation, 
+is exported from the one module, so they are most of your documentation,
 along with a preact-bound instance [`htm`](https://github.com/developit/htm),
 and [the Buildless tools](./docs/index.md).
 
