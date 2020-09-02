@@ -18,7 +18,7 @@ const {
               // indefinitely.
   get: (cache) => async (...args) => { /* ... */ },
   /*
-    // Further functions passed here should be of the following form, 
+    // Further functions passed here should be of the following form,
     // and will be unwrapped and placed in `methods` above
     update: (cache) => async (newProps) => { ... },
   */
@@ -54,8 +54,8 @@ const articleResource = (postId) => {
 };
 ```
 
-The resolved value from resource methods' promises becomes the new state's 
-`data` field, and any errors thrown become the state's `error` field - so be 
+The resolved value from resource methods' promises becomes the new state's
+`data` field, and any errors thrown become the state's `error` field - so be
 aware of what you're returning.
 
 In your component, you'd use the above resource thusly:
@@ -81,8 +81,8 @@ const ArticleDetails = ({ postId }) => {
 ## the `cache` object
 
 The `cache` argument allows one resource to manage another.
-For example, if you have a resource for single articles - `/articles/:articleId` - 
-and a resource for the collection of articles - `/articles` - you'll want to 
+For example, if you have a resource for single articles - `/articles/:articleId` -
+and a resource for the collection of articles - `/articles` - you'll want to
 indicate that the cache for the latter is stale when you update the former, e.g.:
 
 ```javascript
@@ -115,7 +115,7 @@ The `cache` object has the following properties:
 
 Accepts an `updater` function of the form `async updater(state)`,
 the resolved value of which becomes the new `data` field of the
-state.  The `state` field that's passed is identical to what's 
+state.  The `state` field that's passed is identical to what's
 returned from `useResource`.
 
 ### `destroy()`
@@ -137,21 +137,4 @@ resource has not been cached, this is null, so you'll usually want
 to chain it conditionally, e.g., `cache.for('other')?.stale()`.
 
 Note that `fetch` does _not_ return an error on a non-OK HTTP code.  You have
-to detect and handle that sort of thing yourself.
-
-I'm considering adding this to buildless for that reason:
-
-```javascript
-const fetchJson = async (url, { body, ...props} = {}) => {
-  const response = await fetch(url, {
-    ...props,
-    ...(body && {
-      body: typeof body === 'string' ? body : JSON.stringify(body),
-      headers: { 'content-type': 'application/json' },
-    }),
-  });
-  const { ok, status, statusText } = response;
-  if (!response.ok) throw Object.assign(new Error(`HTTP ${status} ${statusText}`), { status, statusText });
-  return response.json();
-};
-```
+to detect and handle that sort of thing yourself.  Ideally, you'd be using [`apiClient`](./apiClient.md).

@@ -11,6 +11,7 @@ export * from 'preact/hooks';
 export * from 'preact-router';
 export * from 'preact-router/match';
 export * from './buildless-css.js';
+export * from './apiClient.js';
 
 const _inject = { ..._hooks, createElement };
 
