@@ -17,19 +17,20 @@ in from your index.html and replaced with:
     If you need to significantly restructure for this (or you just want to),
     make sure to test that the source still works before continuing.
 
-3. If you haven't make this a node project already:
+3. If you haven't made this a node project already:
     1. run `npm init` on your project root.
     2. Run `npm i -D @fordi-org/buildless`.
-    3. In your `package.json`, get rid of `"main": "index.js"`, and add:
-      ```json
-      "browser": "dist/index.html",
-      "scripts": {
-        "build": "buildless-build",
-        "src": "buildless-serve src",
-        "dist": "buildless-serve prod",
-        "clean": "rm -rf dist"      
-      },
-      ```
+
+4. In your `package.json`, get rid of `"main": "index.js"`, and add:
+    ```json
+    "browser": "dist/index.html",
+    "scripts": {
+      "build": "buildless-build",
+      "src": "buildless-serve src",
+      "dist": "buildless-serve prod",
+      "clean": "rm -rf dist"      
+    },
+    ```
 
 ## Build
 

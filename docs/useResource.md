@@ -45,7 +45,7 @@ const articleResource = (postId) => {
       body: JSON.stringify(details),
       header: { 'content-type': 'application/json' }
     }).then(r => r.json()),
-    delete: async (cache) => {
+    delete: (cache) => async () => {
       await fetch(path, { method: 'DELETE' });
       cache.destroy();
       return null;
