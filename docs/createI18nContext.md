@@ -1,4 +1,4 @@
-# `createI18NContext`
+# `createI18nContext`
 
 ```javascript
 const I18N = createI18nContext({
