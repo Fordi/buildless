@@ -1,4 +1,4 @@
-# `css`
+# `createI18NContext`
 
 ```javascript
 const I18N = createI18nContext({
