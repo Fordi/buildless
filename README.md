@@ -1,7 +1,7 @@
 Buildless
 ---------
 
-A small (34k) compilation of [Preact](https://preactjs.com/),
+A small (25k) compilation of [Preact](https://preactjs.com/),
 [Preact Router](https://github.com/preactjs/preact-router), and
 [HTM](https://github.com/developit/htm) - along with a
 [few of my own inventions](./docs/index.md) - that
