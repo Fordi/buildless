@@ -1,7 +1,7 @@
 const BROWSER_LANG = navigator.language.split('-')[0];
 
 export default ({ createContext, createElement }) => {
-  return ({ messageTable, keyLang = 'en' }) => {
+  return ({ messageTable, keyLang }) => {
     const Context = createContext({ language: BROWSER_LANG });
     const { Provider } = Context;
     Context.Provider = ({
@@ -18,7 +18,7 @@ export default ({ createContext, createElement }) => {
           } else if (!lookup[language] && language !== keyLang) {
             console.warn(`No ${language} translation for "${id}"`);
           }
-          if (language === keyLang || !lookup || !lookup[language]) {
+          if ((keyLang && language === keyLang) || !lookup || !lookup[language]) {
             return String.raw(strings, ...subs);
           }
           return String.raw({ raw: lookup[language].split('%%') }, ...subs);

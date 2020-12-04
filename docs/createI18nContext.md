@@ -20,13 +20,21 @@ This function creates a context providing a template function that
 coordinates internationalization across your app.  Simply provide it a message
 table, wrap your app with the context, and use the context in your components.
 
-Your keys are the strings you pass in your native language, with all template
-substitutions swapped out for the string '%%' - so it's pretty
+If `keyLang` is set, your keys are the strings you pass in that language,
+with all template substitutions swapped out for the string '%%' - so it's pretty
 straightforward to migrate to internationalized text.
 
 Also, you'll get warnings on your console for strings that aren't in the table,
 and for strings you don't have a translation for - so you can pretty much migrate
 your site, _then_ start writing your translations.
+
+If `keyLang` is _not_ specified, no assumption is made about the meaning of the key,
+and you _must_ provide a native translation.  This allows more conventional i18n
+keying, e.g.,
+
+```javascript
+_`MyComponent.button.label`
+```
 
 ## Example:
 
