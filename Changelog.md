@@ -1,3 +1,9 @@
+v1.1.17
+- Improved server
+- Keeping up with preact
+- Added apiClient - Uniformly decorate requests.
+- Added createI18nContext - Simple and easy internationalization.
+- Added VERSION string
 
 v1.1.6
 - Includes preact-router - multipage SPAs
