@@ -4,6 +4,7 @@ const { dirname, resolve } = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const { root, package: { buildless = {} } } = require('../lib/getProject')();
+const babelConf = require('../lib/babel-buildless-conf.js');
 
 const {
   entry = './src/index.js',
@@ -25,6 +26,7 @@ webpack({
         use: {
           loader: 'babel-loader',
           options: {
+            ...babelConf,
             plugins: [
               ['babel-plugin-htm', {
                 pragma: 'h',
@@ -44,22 +46,7 @@ webpack({
                   }
                 }
               }],
-              ['babel-plugin-minify-constant-folding'],
-              ['babel-plugin-minify-dead-code-elimination'],
-              ['babel-plugin-minify-flip-comparisons'],
-              ['babel-plugin-minify-guarded-expressions'],
-              ['babel-plugin-minify-infinity'],
-              ['babel-plugin-minify-mangle-names'],
-              ['babel-plugin-minify-replace'],
-              ['babel-plugin-minify-simplify'],
-              ['babel-plugin-minify-type-constructors'],
-              ['babel-plugin-transform-member-expression-literals'],
-              ['babel-plugin-transform-merge-sibling-variables'],
-              ['babel-plugin-transform-minify-booleans'],
-              ['babel-plugin-transform-property-literals'],
-              ['babel-plugin-transform-simplify-comparison-operators'],
-              ['babel-plugin-transform-undefined-to-void'],
-              ['@babel/plugin-proposal-optional-chaining'],
+              ...babelConf.plugins
             ]
           }
         }

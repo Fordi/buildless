@@ -26,14 +26,29 @@ const clsRx = /\.([^ \.\[:>,]+)/g;
 export const css = (...args) => createStylesheet(String.raw(...args));
 
 const appendId = (str, id) => str.endsWith(`_${id}`) ? str : `${str}_${id}`;
+const aniKwRx = /infinite|none|forwards|backwards|both|paused|running|normal|reverse|alternate-normal|alternate-reverse/;
 
 const insertRule = (rule, id) => {
   const classNames = allRules(rule).reduce((cls, r) => {
     if (r.type === CSSRule.KEYFRAMES_RULE) {
       r.name = appendId(r.name, id);
     }
-    if (r.style && r.style.animationName) {
-      r.style.animationName = appendId(r.style.animationName, id);
+    if (r.style) {
+      if (r.style['animation-name']) {
+        r.style['animation-name'] = r.style['animation-name'].split(',').map(p => appendId(p.trim(), id)).join(',');
+      }
+      if (r.style.animation) {
+        r.style.animation = r.style.animation.replace(/,[\s\r\n\t]+/g, ',').split(/[\s\r\n\t]+/).map(part => {
+          // Can have multiple values
+          const [piece, ...pieces] = part.split(',');
+          // Starts with a number; it's a time value or iteration count
+          if (/^[\.0-9]/.test(piece)) return part;
+          // keywords
+          if (aniKwRx.test(piece)) return part;
+          // Not a keyword or numeric; it's an ID.
+          return [piece, ...pieces].map(p => appendId(p.trim(), id)).join(',');
+        }).join(' ');
+      }
     }
     if (r.selectorText) {
       r.selectorText = r.selectorText.replace(clsRx, (_, m) => {

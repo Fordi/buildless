@@ -19,7 +19,9 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "babel-jest": "^26.6.3",
     "htm": "^3.0.4",
+    "jest": "^26.6.3",
     "microbundle": "^0.12.3",
     "preact": "^10.5.7",
     "preact-router": "^3.2.1"
@@ -68,5 +70,15 @@
   ],
   "engines": {
     "node": ">=10.21.0"
+  },
+  "jest": {
+    "testMatch": [
+      "./**/*.test.js"
+    ],
+    "transform": {
+      "\\.js$": "./lib/babel-jest-transformer.js"
+    },
+    "collectCoverage": true,
+    "coverageReporters": ["json", "html"]
   }
 }

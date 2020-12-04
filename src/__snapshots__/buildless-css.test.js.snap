@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`css returns a hash of class names 1`] = `
+CSSStyleSheet {
+  "cssRules": Array [
+    CSSKeyframesRule {
+      "__ends": 100,
+      "__starts": 0,
+      "_vendorPrefix": undefined,
+      "cssRules": Array [
+        CSSKeyframeRule {
+          "__ends": 60,
+          "__starts": 34,
+          "keyText": "0%",
+          "parentRule": [Circular],
+          "parentStyleSheet": CSSStyleSheet {
+            "cssRules": Array [
+              [Circular],
+            ],
+            "parentStyleSheet": null,
+          },
+          "style": CSSStyleDeclaration {
+            "0": "border",
+            "_importants": Object {
+              "border": "",
+            },
+            "border": "1px solid black",
+            "length": 1,
+            "parentRule": [Circular],
+          },
+        },
+        CSSKeyframeRule {
+          "__ends": 97,
+          "__starts": 69,
+          "keyText": "100%",
+          "parentRule": [Circular],
+          "parentStyleSheet": CSSStyleSheet {
+            "cssRules": Array [
+              [Circular],
+            ],
+            "parentStyleSheet": null,
+          },
+          "style": CSSStyleDeclaration {
+            "0": "border",
+            "_importants": Object {
+              "border": "",
+            },
+            "border": "100px solid white",
+            "length": 1,
+            "parentRule": [Circular],
+          },
+        },
+      ],
+      "name": "snarf_deadbeef",
+      "parentRule": null,
+      "parentStyleSheet": [Circular],
+    },
+    CSSStyleRule {
+      "__ends": 94,
+      "__starts": 0,
+      "parentRule": null,
+      "parentStyleSheet": [Circular],
+      "selectorText": ".three_deadbeef",
+      "style": CSSStyleDeclaration {
+        "0": "animation",
+        "__starts": 16,
+        "_importants": Object {
+          "animation": "",
+        },
+        "animation": "snarf_deadbeef 5s linear_deadbeef 2s infinite alternate_deadbeef",
+        "length": 1,
+        "parentRule": [Circular],
+      },
+    },
+    CSSStyleRule {
+      "__ends": 58,
+      "__starts": 0,
+      "parentRule": null,
+      "parentStyleSheet": [Circular],
+      "selectorText": ".two_deadbeef",
+      "style": CSSStyleDeclaration {
+        "0": "margin",
+        "1": "animation-name",
+        "__starts": 14,
+        "_importants": Object {
+          "animation-name": "",
+          "margin": "",
+        },
+        "animation-name": "snarf_deadbeef",
+        "length": 2,
+        "margin": "0",
+        "parentRule": [Circular],
+      },
+    },
+    CSSStyleRule {
+      "__ends": 27,
+      "__starts": 0,
+      "parentRule": null,
+      "parentStyleSheet": [Circular],
+      "selectorText": ".one_deadbeef",
+      "style": CSSStyleDeclaration {
+        "0": "padding",
+        "__starts": 14,
+        "_importants": Object {
+          "padding": "",
+        },
+        "length": 1,
+        "padding": "0",
+        "parentRule": [Circular],
+      },
+    },
+  ],
+  "parentStyleSheet": null,
+}
+`;
