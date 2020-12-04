@@ -71,3 +71,23 @@ Go. Play. Build some neat stuff.
 
 \*sigh\* fine.  Go [here](production.md) for information on how to make a
 production build.
+
+## This is broke!
+
+Let me know.  I will react immediately to anything that shows up in [issues](https://github.com/Fordi/buildless/issues), so have at it; I am your slave.
+
+## This is broke, but I can fix it
+
+Building is the standard:
+
+1. Fork the repo and clone it locally
+2. `npm ci`
+3. `npm run build`
+
+The library will be in `dist/buildless.modern.js`.  You can import that file like you would
+`https://unpkg.com/@fordi-org/buildless`; I'll typically symlink to a file local to the app
+I've got my test case written in.
+
+Once you've got your fix or feature ready to go, push to your branch and PR as normal; I react to
+PRs immediately as well, and am _super_ friendly when someone shows even a little bit of interest
+in my toys.

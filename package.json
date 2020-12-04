@@ -4,8 +4,8 @@
   "description": "Write react-like apps without a build process",
   "author": "",
   "scripts": {
-    "build:runtime": "microbundle -i src/index.js -o dist/buildless.js --raw --compress false --strict -f modern",
-    "build:prod": "microbundle -i src/prod.js -o dist/buildless.prod.js --raw --strict -f modern",
+    "build:runtime": "microbundle -i src/index.js -o dist/buildless.js --raw --compress true --strict -f modern; ls -la dist/buildless.modern.js",
+    "build:prod": "microbundle -i src/prod.js -o dist/buildless.prod.js --raw --compress true --strict -f modern; ls -la dist/buildless.prod.modern.js",
     "build": "npm run build:runtime && npm run build:prod"
   },
   "repository": {
