@@ -6,4 +6,5 @@
 - [`useScheduled`](./useScheduled.md) - a hook for events that shouldn't fire too often
 - [`useUid`](./useUid.md) - a hook for generating unique IDs
 - [`asyncComponent`](./asyncComponent.md) - a builder to let you lazy-load components at runtime
-- [`createI18nContext`](./createI18nContext.md) - Make contexts for internationalization
+- [`createI18nContext`](./createI18nContext.md) - make contexts for internationalization
+- [`apiClient`](./apiClient.md) - uniformly decorate requests for various APIs.
