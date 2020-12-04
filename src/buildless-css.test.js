@@ -8,7 +8,7 @@ describe('classes', () => {
     expect(classes('one')(false && two).and('three')('one').toString()).toBe('three one');
   });
 });
-
+const localMath = global.Math;
 describe('css', () => {
   beforeEach(() => {
     const mockMath = Object.create(global.Math);
@@ -20,6 +20,7 @@ describe('css', () => {
     for (const sheet of document.querySelectorAll('head>style')) {
       sheet.parentNode.removeChild(sheet);
     };
+    global.Math = localMath;
   });
   it('returns a hash of class names', () => {
     const styles = css`
