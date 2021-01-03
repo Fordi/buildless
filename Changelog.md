@@ -1,3 +1,6 @@
+v1.1.18
+- Updated deps
+
 v1.1.17
 - Improved server
 - Keeping up with preact
