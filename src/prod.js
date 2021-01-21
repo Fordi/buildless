@@ -22,4 +22,4 @@ export const useScheduled = _useScheduled(_inject);
 export const asyncComponent = _asyncComponent(_inject);
 export const createI18nContext = _createI18nContext(_inject);
 
-export const VERSION = '1.1.18';
+export const VERSION = '1.1.19';
