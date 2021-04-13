@@ -5,7 +5,7 @@ A small (36k) compilation of [Preact](https://preactjs.com/),
 [Preact Router](https://github.com/preactjs/preact-router), and
 [HTM](https://github.com/developit/htm) - along with a
 [few of my own inventions](./docs/index.md) - that
-allows you to write modern web applications with little-to-no
+allow you to write modern web applications with little-to-no
 framework, and without a compilation step.
 
 The goal here is that you should be able to create apps whose source runs directly
@@ -76,7 +76,7 @@ production build.
 
 Let me know.  I will react immediately to anything that shows up in [issues](https://github.com/Fordi/buildless/issues), so have at it; I am your slave.
 
-## This is broke, but I can fix it
+## This is broke, but I can help fix it
 
 Building is the standard:
 

@@ -4,11 +4,12 @@
 const scheduleAction = useScheduled(action, minDelay);
 ```
 
-Returns a function that will run an action a set amount of time after
-invoked in quick succession, or upon component dismount, whichever comes first.
+Returns a function that will run an action _once_ a set amount of time after
+the last invokation in a series of quick invokations, or upon component dismount,
+whichever comes first.
 
 It's useful for things like on-change updating of remote resources, where the
-invokations come quickly, but you don't want to flood your server with them.
+changes come quickly, but you don't want to flood your server with requests.
 
 ## Example usage:
 
