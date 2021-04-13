@@ -21,7 +21,7 @@ const _inject = { ..._hooks, createElement: h, createContext };
 export const useResource = _useResource(_inject);
 export const useUid = _useUid(_inject);
 export const useScheduled = _useScheduled(_inject);
-export const { asyncComponent, asyncComponents } = _asyncComponent(_inject);
+export const { asyncComponent, asyncComponents } = _asyncComponents(_inject);
 export const createI18nContext = _createI18nContext(_inject);
 
 export const VERSION = '1.3.0';
