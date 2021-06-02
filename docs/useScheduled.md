@@ -19,7 +19,7 @@ const ArticleEditor = ({ articleId }) => {
   const scheduleUpdate = useScheduled((event) => {
     const { name, value } = event.target;
     sendUpdateToServer({ name, value });
-  }, 5000);
+  }, { timeout: 5000 });
   /* ... */
   return html`
     <input name="title" value=${article.title} onKeyUp=${scheduleUpdate} />
