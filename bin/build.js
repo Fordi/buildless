@@ -17,6 +17,7 @@ webpack({
   output: {
     path: resolve(root, dist),
     filename: 'index.js',
+    publicPath: buildless.publicPath || '',
   },
   module: {
     rules: [
