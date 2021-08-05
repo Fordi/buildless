@@ -7,30 +7,22 @@ export default ({
 }) => {
   const asyncComponents = (promisor, Loading = Blank) => {
     let cachedPromise = null;
-    const cachedPromisor = () => {
-      if (!cachedPromise) {
-        cachedPromise = promisor();
-      }
-      return cachedPromise;
-    };
-  
-    const buildComponent = name => {
-      return props => {
+    return new Proxy({}, {
+      get: (_, name) => props => {
         const [{ Comp }, setComp] = useState({ Comp: Loading });
         useEffect(() => {
-          cachedPromisor().then(mod => {
+          if (!cachedPromise) cachedPromise = promisor();
+          cachedPromise.then(mod => {
             if (!(name in mod)) {
               console.warn(`Cannot find ${name} in ${Object.keys(mod)}!`);
+              setComp({ Comp: () => null });
             } else {
               setComp({ Comp: mod[name] });
             }
           });
         }, []);
         return createElement(Comp, props);
-      };
-    };
-    return new Proxy({}, {
-      get: (_, name) => buildComponent(name),
+      },
     });
   };
 
@@ -40,7 +32,7 @@ export default ({
     if (names.length) {
       return names.reduce((o, n) => ({ ...o, [n]: lib[n] }), {});
     }
-    const { default: asyncComp } = asyncComponents(promisor, Loading);
+    const { default: asyncComp } = lib;
     return asyncComp;
   };
 

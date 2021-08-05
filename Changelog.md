@@ -1,4 +1,11 @@
-# v1.3.1
+# v1.3.3
+
+Feature updates:
+
+- New hook: `useEventListener` - Attach a function as an event handler, detatching when the component is removed.
+- New hook: `useSharedState` - useState, but shared between instances of your app
+
+# v1.3.2
 
 Maintenance dependencies update:
 
