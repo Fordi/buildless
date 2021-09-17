@@ -1,5 +1,9 @@
-Buildless
----------
+Buildless [Archived]
+--------------------
+
+This was an experiment, and it has ended.  Please visit [app-skeleton](https://github.com/Fordi/app-skeleton) for its spiritual successor.
+
+-----
 
 A small (36k) compilation of [Preact](https://preactjs.com/),
 [Preact Router](https://github.com/preactjs/preact-router), and
